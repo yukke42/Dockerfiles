@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CONTAINER_USER='yukke'
+CONTAINER_HOST='test'
+COMMAND="/bin/bash"
+HOST_PORT='3333'
+CONTAINER_PORT='3333'
+
+# echo -n "IMAGE_REPOSITORY: "; read IMAGE_REPOSITORY
+# echo -n "IMAGE_TAG: "; read IMAGE_TAG
+IMAGE_REPOSITORY="ubuntu/$CONTAINER_USER"
+IMAGE_TAG='mysql'
+
+docker run -it --rm \
+  -h $CONTAINER_HOST \
+  -p $HOST_PORT:$CONTAINER_PORT \
+  $IMAGE_REPOSITORY:$IMAGE_TAG $COMMAND
