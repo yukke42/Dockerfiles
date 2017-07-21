@@ -1,9 +1,0 @@
-XTerm*utf8              : 1
-XTerm*locale            : true
-XTerm*selectToClipboard : true
-XTerm*faceSize          : 13
-XTerm*cjkWidth          : true
-XTerm*background        : black
-XTerm*foreground        : white
-XTerm*saveLines         : 2000
-XTerm*geometry          : 100x30+300+100
