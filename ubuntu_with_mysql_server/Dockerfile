@@ -10,9 +10,12 @@ RUN echo "mysql-server mysql-server/root_password_again password $MYSQL_PASSWD" 
 RUN apt-get update && apt-get install -y \
     sudo \
     locate \
+    tzdata \
     language-pack-ja \
     vim \
+    build-essential \
     mysql-server \
+    libmysqlclient-dev
 
 
 
@@ -25,9 +28,12 @@ RUN useradd -m $USERNAME -s /bin/bash && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
 # init dotfiles
-RUN  echo "[client]\npassword='$MYSQL_PASSWD'" > /root/.my.cnf
-COPY ../dotfiles/.bashrc /home/$USERNAME/.bashrc
-RUN  chown $USERNAME:$USERNAME /home/$USERNAME/*
+# RUN  echo "[client]\nuser=root\npassword='$MYSQL_PASSWD'" > /home/$USERNAME/.my.cnf
+COPY .bashrc /home/$USERNAME/.bashrc
+RUN  chown -R $USERNAME:$USERNAME /home/$USERNAME/
+
+# time zone setting
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # update locate database
 RUN updatedb

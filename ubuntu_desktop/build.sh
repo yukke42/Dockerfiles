@@ -2,9 +2,7 @@
 OS='ubuntu'
 USERNAME='yukke'
 IMAGE_REPOSITORY="${OS}/${USERNAME}"
-IMAGE_TAG='mysql'
-THIS_DIR=$(basename `pwd`)
-echo $THIS_DIR
+IMAGE_TAG='desktop'
 
 # copy  dotfiles because copying files from partent dir is forbiddened by build commnad
 cp ../dotfiles/.bashrc .bashrc
