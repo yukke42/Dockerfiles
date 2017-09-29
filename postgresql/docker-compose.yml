@@ -1,0 +1,17 @@
+db:
+  image: busybox
+  volumes:
+    - $LOCAL_VOLUME:/var/lib/postgresql/data
+  container_name: $VOLUME_CONTAINER_NAME
+
+postgresql:
+  image: postgres
+  environment:
+    POSTGRES_DB: $POSTGRES_DB
+    POSTGRES_USER: $POSTGRES_USER
+    POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+  ports:
+    - $LOCAL_PORT:5432
+  container_name: $CONTAINER_NAME
+  volumes_from:
+    - db
