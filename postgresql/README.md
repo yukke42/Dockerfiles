@@ -1,6 +1,13 @@
 # PostgreSQLのDockerImage作成
 
 
+## Settings
+
+```
+$ cp .env.sample .env
+```
+
+
 
 ## Start up
 
