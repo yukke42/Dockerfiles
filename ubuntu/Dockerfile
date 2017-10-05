@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     build-essential
 
 # Add basic user
-ENV USERNAME yukke
+ENV USERNAME yukke42
 ENV HOME /home/$USERNAME
 RUN useradd -m $USERNAME -s /bin/bash && \
     echo "$USERNAME:$USERNAME" | chpasswd && \
