@@ -4,7 +4,7 @@
 ## Settings
 
 ```
-$ cp .env.sample .env
+$ cp .env.example .env
 ```
 
 
