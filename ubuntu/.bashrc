@@ -25,3 +25,6 @@ alias mv='mv -i'
 
 # a line prompt
 export PS1='\[\033[01;35m\]\u@\H\[\033[01;32m\] \w \$\[\033[00m\]'
+
+# change ls color
+export LS_COLORS='di=01;36'
