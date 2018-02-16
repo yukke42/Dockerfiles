@@ -1,4 +1,4 @@
-# PostgreSQLのDockerImage作成
+# MySQLのDockerImage作成
 
 
 ## Settings
