@@ -1,13 +1,18 @@
 FROM ubuntu:16.04
 MAINTAINER yukke42
 
+# ダウンロードするサーバーを日本ミラーに変更する
+RUN sed -i.backup "s%http://archive.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y \
     sudo \
     tzdata \
     vim \
     locate \
     language-pack-ja \
-    git \
+    git
+
+RUN apt-get update && apt-get install -y \
     build-essential
 
 # Add basic user
