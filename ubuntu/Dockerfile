@@ -27,6 +27,9 @@ RUN useradd -m $USERNAME -s /bin/bash && \
 # update locate database
 RUN updatedb
 
+# local timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
 # copy dotfiles
 COPY .bashrc /home/$USERNAME/.bashrc
 RUN  chown $USERNAME:$USERNAME $HOME/.bashrc
