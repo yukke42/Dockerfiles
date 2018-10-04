@@ -1,21 +1,25 @@
-FROM ubuntu:16.04
-MAINTAINER yukke42
+FROM ubuntu:18.04
 
 # ダウンロードするサーバーを日本ミラーに変更する
 RUN sed -i.backup "s%http://archive.ubuntu.com/ubuntu/%http://ftp.jaist.ac.jp/pub/Linux/ubuntu/%g" /etc/apt/sources.list
 
+# TimeZoneをJSTに変更
+RUN apt-get update && \
+    apt-get install -y tzdata && \
+    rm -rf /var/lib/apt/lists/* && \
+    echo "Asia/Tokyo" > /etc/timezone && \
+    ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
+
 RUN apt-get update && apt-get install -y \
     sudo \
-    tzdata \
     vim \
     locate \
+    git \
     language-pack-ja \
-    git
-
-RUN apt-get update && apt-get install -y \
     build-essential
 
-# Add basic user
+# ユーザーの追加
 ENV USERNAME yukke42
 ENV HOME /home/$USERNAME
 RUN useradd -m $USERNAME -s /bin/bash && \
@@ -24,16 +28,14 @@ RUN useradd -m $USERNAME -s /bin/bash && \
     echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME
 
-# update locate database
+# bash設定を導入
+RUN git clone https://github.com/yukke42/dotfiles ~/.dotfiles && \
+    cd ~/.dotfiles/BashOnUbuntu && \
+    ./setup.sh && \
+    . ~/.bash_profile
+
 RUN updatedb
+RUN chown -R $USERNAME:$USERNAME $HOME
 
-# local timezone
-RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-
-# copy dotfiles
-COPY .bashrc /home/$USERNAME/.bashrc
-RUN  chown $USERNAME:$USERNAME $HOME/.bashrc
-
-# change user
 USER $USERNAME
 WORKDIR $HOME
