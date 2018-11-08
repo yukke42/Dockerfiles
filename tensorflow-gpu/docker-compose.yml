@@ -1,0 +1,8 @@
+version: '2.3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    runtime: nvidia
+    command: python -c "from tensorflow.python.client import device_lib; print(device_lib.list_local_devices())"
