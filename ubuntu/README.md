@@ -2,14 +2,34 @@
 
 ## Build
 
+### with docker-compose
+
 ```
-$ docker build -t ubuntu/yukke42 .
+docker-compose build ubunt (ubunt-cuda)
 ```
+
+
+
+### without docker-compose
+
+```bash
+docker -f Dockerfile (Dockerfile.cuda) build -t ubuntu .
+```
+
+
 
 ## Run
 
+### with docker-compose
+
 ```
-$ docker run -it -h ubuntu ubuntu/yukke42 /bin/bash
-# ホストとディレクトリを共有したい場合
-$ docker run -it -v /path/to/hostdir:/path/to/destdir -h ubuntu ubuntu/yukke42 /bin/bash
+docker-compose run ubuntu (ubuntu-cuda) bash
+```
+
+
+
+### without docker-compose
+
+```
+docker run -it (ubuntu-cuda) ubuntu bash
 ```

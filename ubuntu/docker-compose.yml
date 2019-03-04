@@ -1,0 +1,13 @@
+version: '2.3'
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  ubuntu-cuda:
+    build:
+      context: .
+      dockerfile: Dockerfile.cuda
+    runtime: nvidia
+    command: nvidia-smi
