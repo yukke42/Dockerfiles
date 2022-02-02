@@ -1,8 +1,1 @@
-# Ignore User Settings
-.env
-
-# Ignore the volume dir
-.data
-
-# Ignore othre file
-.DS_Store
+.vscode/
